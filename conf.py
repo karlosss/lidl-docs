@@ -131,7 +131,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'LI-DL.tex', 'LI-DL Documentation',
-     'Karel Jílek', 'manual'),
+     'Karel Jilek', 'manual'),
 ]
 
 
