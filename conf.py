@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'LI-DL'
-copyright = '2018, Karel Jílek'
-author = 'Karel Jílek'
+copyright = '2018, Karel Jilek'
+author = 'Karel Jilek'
 
 # The short X.Y version
 version = ''
