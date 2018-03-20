@@ -8,6 +8,7 @@ Welcome to LI-DL's documentation!
 
 .. toctree::
    :maxdepth: 2
+   about
    :caption: Contents:
 
 
