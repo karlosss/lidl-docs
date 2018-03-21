@@ -11,4 +11,5 @@ Welcome to LI-DL's documentation!
 
    about
    getting_started
+   the_background
 

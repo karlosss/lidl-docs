@@ -2,7 +2,7 @@
 Getting started
 ###############
 
-*LI-DL* is currently built in in the *LearnShell* project and therefore the compiler is accessible via the web application. To access the *LI-DL* field, go create (or edit) a problem, in there go create (or edit) a test and scroll down to *LI-DL* generator. This is the field where *LI-DL* code should go in.
+*LI-DL* is currently embedded in the *LearnShell* project and therefore the compiler is accessible via the web application. To access the *LI-DL* field, go create (or edit) a problem, in there go create (or edit) a test and scroll down to *LI-DL* generator. This is the field where *LI-DL* code should go in.
 
 Say you have a really simple problem. You want to write a Bash script which prints its first positional parameter. Therefore, a correct solution could look for example like this::
 
@@ -22,7 +22,7 @@ Let's explain it a bit. :code:`Argument {...}` is the definition of an :code:`Ar
 
 A *generator* is a data type in *LI-DL* which serves for generating random strings. It is written as :code:`[... , ...]`. The first part (let's call it first parameter) is a count (might be an integer or a range) and specifies how many characters will be used in the string. And the second parameter is a collection where the generator takes the characters from (it might be a constant string, an *alphabet* which will be explained later, or even another generator, causing it to be invoked repeatedly).
 
-The syntax of a *range* is quite simple: :code:`X:Y`, where :code:`X` is the lower bound and :code:`Y` is the upper bound (both are included in the range). So our :code:`5:10` range upon request yields an integer from 5 to 10 (both included) with an uniform probability.
+The syntax of a *range* is quite simple: :code:`X:Y`, where :code:`X` is the lower bound and :code:`Y` is the upper bound (both are included in the range). So our :code:`5:10` range upon request yields an integer from 5 to 10 (both included) with a uniform probability.
 
 To define an alphabet with characters :code:`a`, :code:`b` and :code:`c`, we would write :code:`{"a","b","c"}`. It would be quite annoying to write the whole lowercase alphabet so *LI-DL* has some builtins. One of them is exactly the lowercase alphabet. Therefore, all what needs to be done is to use the variable :code:`LOWER_ASCII`.
 
