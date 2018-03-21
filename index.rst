@@ -10,3 +10,5 @@ Welcome to LI-DL's documentation!
    :maxdepth: 2
 
    about
+   getting_started
+

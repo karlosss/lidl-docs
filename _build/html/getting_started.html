@@ -1,0 +1,108 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting started &#8212; LI-DL  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Overview" href="about.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p><em>LI-DL</em> is currently built in in the <em>LearnShell</em> project and therefore the compiler is accessible via the web application. To access the <em>LI-DL</em> field, go create (or edit) a problem, in there go create (or edit) a test and scroll down to <em>LI-DL</em> generator. This is the field where <em>LI-DL</em> code should go in.</p>
+<p>Say you have a really simple problem. You want to write a Bash script which prints its first positional parameter. Therefore, a correct solution could look for example like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span> <span class="o">--</span> <span class="s2">&quot;$1&quot;</span>
+</pre></div>
+</div>
+<p>When generating the input data, we could make four test cases: the first one will contain only lowercase characters (to see if the script works at least a bit), the second one could contain more than one parameter (to check if <cite>$1</cite> is used and not for example <cite>$&#64;</cite>), the third one could contain some whitespaces (to check for quotation) and the last one could look like an option (to check for <cite>–</cite>).</p>
+<p>For the first test case, we need to specify that we want one positional parameter, consisting of let’s say from 5 to 10 lowercase characters. <em>LI-DL</em> introduces constructions called <em>objects</em> to represent the units of test data (an object can be a shell variable, a parameter, a file, a directory, and so on) and <em>generators</em> (for strings) or <em>ranges</em> (for integers) to generate random stuff. Let’s go ahead and write our first <em>LI-DL</em> code:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Argument {</dt>
+<dd>value = [5:10, LOWER_ASCII]</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>Student {}</p>
+<p>Let’s explain it a bit. <cite>Argument {…}</cite> is the definition of an <cite>Argument</cite> object, which causes a positional parameter to be generated. The objects in <em>LI-DL</em> have <em>properties</em> and sometimes can hold another objects (e. g. a <cite>Directory</cite> object can contain <cite>File</cite> objects, causing a directory including those files to be generated). Some of the properties are mandatory, some have a default value, and some might change the behavior of an object. The <cite>Argument</cite> object has a mandatory property called <cite>value</cite> which specifies the value of the argument. It could be a string or an integer (<em>LI-DL</em> of course has those data types as well) but it will cause the argument to be constant and that is not what we want here. We need a random string here. And that is where <em>generators</em> come into play.</p>
+<p>A <em>generator</em> is a data type in <em>LI-DL</em> which serves for generating random strings. It is written as <cite>[… , …]</cite>. The first part (let’s call it first parameter) is a count (might be an integer or a range) and specifies how many characters will be used in the string. And the second parameter is a collection where the generator takes the characters from (it might be a constant string, an <em>alphabet</em> which will be explained later, or even another generator, causing it to be invoked repeatedly).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="about.html" title="previous chapter">Overview</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/getting_started.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Karel Jilek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/getting_started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
