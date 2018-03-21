@@ -28,7 +28,7 @@ To define an alphabet with characters :code:`a`, :code:`b` and :code:`c`, we wou
 
 And this is almost it. You might be wandering what the :code:`Student {}` means. Maybe you realized it is an object. The meaning is that it denotes where in the directory structure the submitted script will be placed. If located inside a :code:`Directory` object, the submitted script will be copied to there. In our problem, it actually does not matter, so let's start in the home directory.
 
-Now click on the compile button and if everything goes right, you should see two *OK*s. Click on save and you are ready to send some submission to see *LI-DL* in aciton. If you reveal the input data hint, you should see your string in the arguments section.
+Now click on the compile button and if everything goes right, you should see twice *OK*. Click on save and you are ready to send some submission to see *LI-DL* in aciton. If you reveal the input data hint, you should see your string in the arguments section.
 
 Alright? Let's go to the second part. We need to generate two arguments now. Since the arguments are often similar (a lot of natural numbers, for example), :code:`Argument` object has a property `count`, meaning how many of those arguments are meant to be generated. So this will be our code::
 
