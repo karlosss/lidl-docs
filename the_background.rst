@@ -32,5 +32,5 @@ The last thing which you have not seen yet is the generated Bash script. It is n
     chmod -- u+x "$(printf -- '%s\x2f\x53\x74\x75\x64\x65\x6e\x74' "${root}")"
     source "$(printf -- '%s\x2f\x53\x74\x75\x64\x65\x6e\x74' "${root}")" "$(printf -- '\x70\x72\x78\x7a\x79\x63\x68\x66' )" <<< ""
 
-Now it should be clear what is going on in the background of *LI-DL*. After a brief explanation of syntax in the next chapter, you should be ready to actually start learning *LI-DL*.
+Now it should be clear what is going on in the background of *LI-DL*.
 
