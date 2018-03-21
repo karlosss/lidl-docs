@@ -22,3 +22,43 @@ Let's explain it a bit. :code:`Argument {...}` is the definition of an :code:`Ar
 
 A *generator* is a data type in *LI-DL* which serves for generating random strings. It is written as :code:`[... , ...]`. The first part (let's call it first parameter) is a count (might be an integer or a range) and specifies how many characters will be used in the string. And the second parameter is a collection where the generator takes the characters from (it might be a constant string, an *alphabet* which will be explained later, or even another generator, causing it to be invoked repeatedly).
 
+The syntax of a *range* is quite simple: :code:`X:Y`, where :code:`X` is the lower bound and :code:`Y` is the upper bound (both are included in the range). So our :code:`5:10` range upon request yields an integer from 5 to 10 (both included) with an uniform probability.
+
+To define an alphabet with characters :code:`a`, :code:`b` and :code:`c`, we would write :code:`{"a","b","c"}`. It would be quite annoying to write the whole lowercase alphabet so *LI-DL* has some builtins. One of them is exactly the lowercase alphabet. Therefore, all what needs to be done is to use the variable :code:`LOWER_ASCII`.
+
+And this is almost it. You might be wandering what the :code:`Student {}` means. Maybe you realized it is an object. The meaning is that it denotes where in the directory structure the submitted script will be placed. If located inside a :code:`Directory` object, the submitted script will be copied to there. In our problem, it actually does not matter, so let's start in the home directory.
+
+Now click on the compile button and if everything goes right, you should see two *OK*s. Click on save and you are ready to send some submission to see *LI-DL* in aciton. If you reveal the input data hint, you should see your string in the arguments section.
+
+Alright? Let's go to the second part. We need to generate two arguments now. Since the arguments are often similar (a lot of natural numbers, for example), :code:`Argument` object has a property `count`, meaning how many of those arguments are meant to be generated. So this will be our code::
+
+    Argument {
+        count = 2
+        value = [5:10, LOWER_ASCII]
+    }
+    Student {}
+
+I believe no more explanation is needed. Again, don't forget to take the input data hint and see the change.
+
+Let's go for the third one and explore a new part of *LI-DL*, *operators*. We actually already encountered an operator :code:`:`, taking two integers and returning a range. Now, we need one more: :code:`+` for string concatenation.
+
+Since a generator yields a string, it could be concatenated with another string (or a generator, or even an integer or a range, *LI-DL* automatically converts the integer to a string). Let's say we want 3 lowercase letters, 3 spaces and 3 uppercase letters::
+
+    Argument {
+        count = 1
+        value = [3, LOWER_ASCII] + "   " + [3, UPPER_ASCII]
+    }
+    Student {}
+
+Strings in *LI-DL* are similar to strings in Python, making no difference between single and double quotes. They also support some metacharacters like :code:`\n` for newline or :code:`\x40` to write a :code:`@` in a cool way.
+
+As you can see, we specified :code:`count = 1` here. If we did not mention it at all, the meaning would stay the same - this is an example of a property with default value (being in this case :code:`1`).
+
+The last test case should be not surprising in any way, since we already know everything. Maybe try to write a code on your own, let's just include an option how to do it for verifying purposes::
+
+    Argument {
+        value = "-" + [1, LOWER_ASCII]
+    }
+    Student {}
+
+How do you like *LI-DL* so far?
