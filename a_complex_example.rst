@@ -39,7 +39,7 @@ We are almost done. Let's focus on the content now. Such created :code:`passwd` 
 Let's now break down and describe a line using *LI-DL* strings, integers and generators.
 
 - The username consists of lowercase characters, let's say from 3 to 15 characters long.
-- :code:`\:x\:` is a literal.
+- :code:`:x:` is a literal.
 - UID and GID are often the same. Let's keep them the same all the time here. They are separated by a literal :code:`:`.
 - The next field is a comment, let's do it arbitrary, consisting of from 8 to 12 lowercase characters.
 - For simplicity, let the homedir always be :code:`/`.
