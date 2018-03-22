@@ -81,7 +81,8 @@ This generates an :code:`/etc/passwd` of exactly one line. To get multiple lines
                           [3:15, LOWER_ASCII] + ":x:" + (uid=0:65535) + 
                           ":" + uid + ":" +
                           [8:12, LOWER_ASCII] + ":/:" + 
-                          [0.3, "/usr/bin/nologin" | 0.7, "/bin/bash"] + "\n"
+                          [0.3, "/usr/bin/nologin" | 0.7, "/bin/bash"] + 
+                          "\n"
                        ]
         }
     }
