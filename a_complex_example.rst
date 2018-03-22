@@ -94,7 +94,7 @@ If the password should be 8 characters long, this would be an expression to gene
 
     [8, (LOWER_ASCII + DIGITS) - {"0", "1", "l", "o"}]
 
-Since all operators in *LI-DL* are left-associative, the parentheses here are redundant.
+Since all operators in *LI-DL* are left-associative and :code:`+` and :code:`-` have the same priority, the parentheses here are redundant.
 
 You should be able to write the code to create the passwords file on your own. Until you realize a problem. The number of lines of this file must be the same as the count of lines of the :code:`passwd` file.
 
