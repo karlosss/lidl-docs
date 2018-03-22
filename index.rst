@@ -13,4 +13,5 @@ Welcome to LI-DL's documentation!
    getting_started
    the_background
    basics_of_syntax
+   a_complex_example
 

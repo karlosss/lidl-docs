@@ -14,6 +14,8 @@ In *LI-DL*, there are two (meaningful) statements: variable assignment and objec
 
 where the value might be a string, a number, another variale, an alphabet, or even a generator or a range. There is one thing which you might find weird, but it actually enables a lot of stuff. If you assign a non-deterministic data type (generator or range) into a variable, the non-deterministic data type is request to generate a value (usually an integer or a string) and this value is stored into the variable. If you would like to assign a generator itself into a variable, then I have bad news for you. You need to use copy and paste. Sorry.
 
+*LI-DL* program has a single scope for variables. There is actually no reason to have more than one scope, although defining a new variable inside an object and then using it outside might look a bit confusing. But nothing prevents you to redefine the variable outside and if you want to, you can use the value assigned to it before. *LI-DL* provides a lot of freedom here.
+
 The exaple declaration of an object looks like this::
 
     ObjectName {

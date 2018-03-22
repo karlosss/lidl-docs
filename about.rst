@@ -12,12 +12,12 @@ An example of *LI-DL* code which creates a directory `etc` and inside it, a file
 
     Directory {
         name = "etc"
-        permissions = "777"
+        permissions = "775"
         File {
             name = "passwd"
             content = [1:30,
                 [1:20, LOWER_ASCII] + ":x:" + (uid=0:65535) + ":" + uid + ":" + [1:20, LOWER_ASCII] +
-                "/:" + [0.5, "/bin/bash" | 0.5, "/usr/bin/nologin"] + "\n"
+                ":/:" + [0.5, "/bin/bash" | 0.5, "/usr/bin/nologin"] + "\n"
             ]
         }
     }
