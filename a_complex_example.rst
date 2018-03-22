@@ -111,14 +111,17 @@ Do you remember what happens when you assign a range to a variable? Did you find
                           [3:15, LOWER_ASCII] + ":x:" + (uid=0:65535) + 
                           ":" + uid + ":" +
                           [8:12, LOWER_ASCII] + ":/:" + 
-                          [0.3, "/usr/bin/nologin" | 0.7, "/bin/bash"] + "\n"
+                          [0.3, "/usr/bin/nologin" | 0.7, "/bin/bash"] + 
+                          "\n"
                        ]
         }
         File {
             name = "passwords"
             permissions = [3, {"4"}]
             content = [cnt,
-                          [8, (LOWER_ASCII + DIGITS) - {"0", "1", "l", "o"}] + "\n"
+                          [8, (LOWER_ASCII + DIGITS) - 
+                              {"0", "1", "l", "o"}
+                          ] + "\n"
                        ]
         }
     }
