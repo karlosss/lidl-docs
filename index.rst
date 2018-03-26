@@ -18,4 +18,5 @@ Welcome to LI-DL's documentation!
    operator_colon
    operator_minus
    operator_plus
-
+   operator_star
+   operator_equal

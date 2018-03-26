@@ -9,7 +9,7 @@ Operator ``+``
    * - Arity
      - Binary
    * - Priority
-     - Lower than ``:``, same as ``-``, higher than anything else (2)
+     - Higher than ``=``, same as ``-``, lower than anything else (3)
 
 
 Allowed operands
