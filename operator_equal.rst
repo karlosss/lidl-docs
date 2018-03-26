@@ -62,7 +62,7 @@ Variable ``int`` contains the integer ``42``::
 
     int = 42
 
-Variable ``gen`` contains several ``na``s followed by ``Batman!``. So does the variable ``joker``::
+Variable ``gen`` contains several times ``na`` followed by ``Batman!``. So does the variable ``joker``::
 
     gen = [5:10, "na"] + " Batman!"
     joker = gen
