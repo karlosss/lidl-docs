@@ -17,6 +17,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The background" href="the_background.html" />
     <link rel="prev" title="Overview" href="about.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -34,23 +35,53 @@
             
   <div class="section" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p><em>LI-DL</em> is currently built in in the <em>LearnShell</em> project and therefore the compiler is accessible via the web application. To access the <em>LI-DL</em> field, go create (or edit) a problem, in there go create (or edit) a test and scroll down to <em>LI-DL</em> generator. This is the field where <em>LI-DL</em> code should go in.</p>
+<p><em>LI-DL</em> is currently embedded in the <em>LearnShell</em> project and therefore the compiler is accessible via the web application. To access the <em>LI-DL</em> field, go create (or edit) a problem, in there go create (or edit) a test and scroll down to <em>LI-DL</em> generator. This is the field where <em>LI-DL</em> code should go in.</p>
 <p>Say you have a really simple problem. You want to write a Bash script which prints its first positional parameter. Therefore, a correct solution could look for example like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span> <span class="o">--</span> <span class="s2">&quot;$1&quot;</span>
 </pre></div>
 </div>
-<p>When generating the input data, we could make four test cases: the first one will contain only lowercase characters (to see if the script works at least a bit), the second one could contain more than one parameter (to check if <cite>$1</cite> is used and not for example <cite>$&#64;</cite>), the third one could contain some whitespaces (to check for quotation) and the last one could look like an option (to check for <cite>–</cite>).</p>
+<p>When generating the input data, we could make four test cases: the first one will contain only lowercase characters (to see if the script works at least a bit), the second one could contain more than one parameter (to check if <code class="code docutils literal notranslate"><span class="pre">$1</span></code> is used and not for example <code class="code docutils literal notranslate"><span class="pre">$&#64;</span></code>), the third one could contain some whitespaces (to check for quotation) and the last one could look like an option (to check for <code class="code docutils literal notranslate"><span class="pre">--</span></code>).</p>
 <p>For the first test case, we need to specify that we want one positional parameter, consisting of let’s say from 5 to 10 lowercase characters. <em>LI-DL</em> introduces constructions called <em>objects</em> to represent the units of test data (an object can be a shell variable, a parameter, a file, a directory, and so on) and <em>generators</em> (for strings) or <em>ranges</em> (for integers) to generate random stuff. Let’s go ahead and write our first <em>LI-DL</em> code:</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>Argument {</dt>
-<dd>value = [5:10, LOWER_ASCII]</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>Student {}</p>
-<p>Let’s explain it a bit. <cite>Argument {…}</cite> is the definition of an <cite>Argument</cite> object, which causes a positional parameter to be generated. The objects in <em>LI-DL</em> have <em>properties</em> and sometimes can hold another objects (e. g. a <cite>Directory</cite> object can contain <cite>File</cite> objects, causing a directory including those files to be generated). Some of the properties are mandatory, some have a default value, and some might change the behavior of an object. The <cite>Argument</cite> object has a mandatory property called <cite>value</cite> which specifies the value of the argument. It could be a string or an integer (<em>LI-DL</em> of course has those data types as well) but it will cause the argument to be constant and that is not what we want here. We need a random string here. And that is where <em>generators</em> come into play.</p>
-<p>A <em>generator</em> is a data type in <em>LI-DL</em> which serves for generating random strings. It is written as <cite>[… , …]</cite>. The first part (let’s call it first parameter) is a count (might be an integer or a range) and specifies how many characters will be used in the string. And the second parameter is a collection where the generator takes the characters from (it might be a constant string, an <em>alphabet</em> which will be explained later, or even another generator, causing it to be invoked repeatedly).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">LOWER_ASCII</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">Student</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Let’s explain it a bit. <code class="code docutils literal notranslate"><span class="pre">Argument</span> <span class="pre">{...}</span></code> is the definition of an <code class="code docutils literal notranslate"><span class="pre">Argument</span></code> object, which causes a positional parameter to be generated. The objects in <em>LI-DL</em> have <em>properties</em> and sometimes can hold another objects (e. g. a <code class="code docutils literal notranslate"><span class="pre">Directory</span></code> object can contain <code class="code docutils literal notranslate"><span class="pre">File</span></code> objects, causing a directory including those files to be generated). Some of the properties are mandatory, some have a default value, and some might change the behavior of an object. The <code class="code docutils literal notranslate"><span class="pre">Argument</span></code> object has a mandatory property called <code class="code docutils literal notranslate"><span class="pre">value</span></code> which specifies the value of the argument. It could be a string or an integer (<em>LI-DL</em> of course has those data types as well) but it will cause the argument to be constant and that is not what we want here. We need a random string here. And that is where <em>generators</em> come into play.</p>
+<p>A <em>generator</em> is a data type in <em>LI-DL</em> which serves for generating random strings. It is written as <code class="code docutils literal notranslate"><span class="pre">[...</span> <span class="pre">,</span> <span class="pre">...]</span></code>. The first part (let’s call it first parameter) is a count (might be an integer or a range) and specifies how many characters will be used in the string. And the second parameter is a collection where the generator takes the characters from (it might be a constant string, an <em>alphabet</em> which will be explained later, or even another generator, causing it to be invoked repeatedly).</p>
+<p>The syntax of a <em>range</em> is quite simple: <code class="code docutils literal notranslate"><span class="pre">X:Y</span></code>, where <code class="code docutils literal notranslate"><span class="pre">X</span></code> is the lower bound and <code class="code docutils literal notranslate"><span class="pre">Y</span></code> is the upper bound (both are included in the range). So our <code class="code docutils literal notranslate"><span class="pre">5:10</span></code> range upon request yields an integer from 5 to 10 (both included) with a uniform probability.</p>
+<p>To define an alphabet with characters <code class="code docutils literal notranslate"><span class="pre">a</span></code>, <code class="code docutils literal notranslate"><span class="pre">b</span></code> and <code class="code docutils literal notranslate"><span class="pre">c</span></code>, we would write <code class="code docutils literal notranslate"><span class="pre">{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}</span></code>. It would be quite annoying to write the whole lowercase alphabet so <em>LI-DL</em> has some builtins. One of them is exactly the lowercase alphabet. Therefore, all what needs to be done is to use the variable <code class="code docutils literal notranslate"><span class="pre">LOWER_ASCII</span></code>.</p>
+<p>And this is almost it. You might be wandering what the <code class="code docutils literal notranslate"><span class="pre">Student</span> <span class="pre">{}</span></code> means. Maybe you realized it is an object. The meaning is that it denotes where in the directory structure the submitted script will be placed. If located inside a <code class="code docutils literal notranslate"><span class="pre">Directory</span></code> object, the submitted script will be copied to there. In our problem, it actually does not matter, so let’s start in the home directory.</p>
+<p>Now click on the compile button and if everything goes right, you should see twice <em>OK</em>. Click on save and you are ready to send some submission to see <em>LI-DL</em> in aciton. If you reveal the input data hint, you should see your string in the arguments section.</p>
+<p>Alright? Let’s go to the second part. We need to generate two arguments now. Since the arguments are often similar (a lot of natural numbers, for example), <code class="code docutils literal notranslate"><span class="pre">Argument</span></code> object has a property <cite>count</cite>, meaning how many of those arguments are meant to be generated. So this will be our code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span> <span class="p">{</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">LOWER_ASCII</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">Student</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>I believe no more explanation is needed. Again, don’t forget to take the input data hint and see the change.</p>
+<p>Let’s go for the third one and explore a new part of <em>LI-DL</em>, <em>operators</em>. We actually already encountered an operator <code class="code docutils literal notranslate"><span class="pre">:</span></code>, taking two integers and returning a range. Now, we need one more: <code class="code docutils literal notranslate"><span class="pre">+</span></code> for string concatenation.</p>
+<p>Since a generator yields a string, it could be concatenated with another string (or a generator, or even an integer or a range, <em>LI-DL</em> automatically converts the integer to a string). Let’s say we want 3 lowercase letters, 3 spaces and 3 uppercase letters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span> <span class="p">{</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">LOWER_ASCII</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;   &quot;</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">UPPER_ASCII</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">Student</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Strings in <em>LI-DL</em> are similar to strings in Python, making no difference between single and double quotes. They also support some metacharacters like <code class="code docutils literal notranslate"><span class="pre">\n</span></code> for newline or <code class="code docutils literal notranslate"><span class="pre">\x40</span></code> to write a <code class="code docutils literal notranslate"><span class="pre">&#64;</span></code> in a cool way.</p>
+<p>As you can see, we specified <code class="code docutils literal notranslate"><span class="pre">count</span> <span class="pre">=</span> <span class="pre">1</span></code> here. If we did not mention it at all, the meaning would stay the same - this is an example of a property with default value (being in this case <code class="code docutils literal notranslate"><span class="pre">1</span></code>).</p>
+<p>The last test case should be not surprising in any way, since we already know everything. Maybe try to write a code on your own, let’s just include an option how to do it for verifying purposes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">LOWER_ASCII</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">Student</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>How do you like <em>LI-DL</em> so far?</p>
 </div>
 
 
@@ -63,6 +94,7 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="about.html" title="previous chapter">Overview</a></li>
+      <li>Next: <a href="the_background.html" title="next chapter">The background</a></li>
   </ul></li>
 </ul>
 </div>

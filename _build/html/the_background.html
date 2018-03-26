@@ -1,0 +1,118 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The background &#8212; LI-DL  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basics of syntax" href="basics_of_syntax.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-background">
+<h1>The background<a class="headerlink" href="#the-background" title="Permalink to this headline">¶</a></h1>
+<p>So far we have learned some basic example of <em>LI-DL</em>. Now it should be the correct time to look into how it <em>actually</em> works.</p>
+<p>Probably the most important concept is that the compiler compiles the code <em>exactly</em> as it is. The code is evaluated at runtime. Therefore, the compiler has no symbol table because it just does not need any. Let’s look at an example of the compiled <em>LI-DL</em> code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="o">=</span> <span class="n">Program</span><span class="p">()</span>
+
+<span class="n">PROGRAM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ObjectFactory</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;Argument&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_property</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">GeneratorFactory</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">[[</span><span class="n">Colon</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">Integer</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span> <span class="n">Integer</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">Variable</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="s2">&quot;LOWER_ASCII&quot;</span><span class="p">)]])))</span>
+<span class="n">PROGRAM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ObjectFactory</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;Student&quot;</span><span class="p">))</span>
+
+<span class="n">PROGRAM</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(Import statements are left out.)</p>
+<p>Do you recognize the code a bit? It is the first test case from the previous chapter. You might probably understand the builder pattern to create the <code class="code docutils literal notranslate"><span class="pre">Argument</span></code> object. But what all these random numbers stand for? They are the line-column position of the according statements in your <em>LI-DL</em> code. The runtime needs them so that in case an error occurs, it can inform you of the line and column which caused the error. It should help to fix the problem more smoothly.</p>
+<p>The second interesting thing is the variable <code class="code docutils literal notranslate"><span class="pre">LOWER_ASCII</span></code>. As you can see, the compiler just created a <code class="code docutils literal notranslate"><span class="pre">Variable</span></code> object with the string describing the name of the variable <em>and that’s it</em>. Try modifying the variable name a bit - the code will still compile, because the compiler just does not care.</p>
+<p>Lastly, but not leastly, it shall be mentioned that until the <code class="code docutils literal notranslate"><span class="pre">run()</span></code> method is called, nothing is actually executed. Therefore, the evaluation of the bytecode might resemble a JIT (just-in-time) compilation and execution, similar (for example) to Bash interpreter. The compilation only catches syntax errors, the rest is left for the runtime.</p>
+<p>Another part of the <em>LI-DL</em> manifesto is that it shall never produce an invalid Bash script. It takes care of escaping all the “problematic” characters (such as <code class="code docutils literal notranslate"><span class="pre">$</span></code> or quotes), but also it tries to generate a set of unique file names in a directory. Sure, sometimes it is just <em>not</em> possible to generate a valid script, for example if one tries to create two files with exactly the same name (giving the <em>LI-DL</em> no option to variate). This will result in an error during the runtime.</p>
+<p>The last thing which you have not seen yet is the generated Bash script. It is not one among the nicest ones, but to be honest, have you ever seen something <em>nice</em> in Bash?:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>set --
+root=$(pwd)
+cp -- &quot;$SCRIPT_PATH&quot; &quot;$(printf -- &#39;\x53\x74\x75\x64\x65\x6e\x74&#39; )&quot;
+chmod -- u+x &quot;$(printf -- &#39;%s&#39; &quot;${root}&quot;)&quot;
+chmod -- u+x &quot;$(printf -- &#39;%s\x2f\x53\x74\x75\x64\x65\x6e\x74&#39; &quot;${root}&quot;)&quot;
+source &quot;$(printf -- &#39;%s\x2f\x53\x74\x75\x64\x65\x6e\x74&#39; &quot;${root}&quot;)&quot; &quot;$(printf -- &#39;\x70\x72\x78\x7a\x79\x63\x68\x66&#39; )&quot; &lt;&lt;&lt; &quot;&quot;
+</pre></div>
+</div>
+<p>Now it should be clear what is going on in the background of <em>LI-DL</em>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="getting_started.html" title="previous chapter">Getting started</a></li>
+      <li>Next: <a href="basics_of_syntax.html" title="next chapter">Basics of syntax</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/the_background.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Karel Jilek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/the_background.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

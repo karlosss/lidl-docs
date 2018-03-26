@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to LI-DL’s documentation! &#8212; LI-DL  documentation</title>
+    <title>Operators &#8212; LI-DL  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
@@ -17,7 +17,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Overview" href="about.html" />
+    <link rel="next" title="Operator :" href="operator_colon.html" />
+    <link rel="prev" title="A complex example" href="a_complex_example.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,33 +33,58 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-li-dl-s-documentation">
-<h1>Welcome to LI-DL’s documentation!<a class="headerlink" href="#welcome-to-li-dl-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="about.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="the_background.html">The background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics_of_syntax.html">Basics of syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="a_complex_example.html">A complex example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operator_colon.html">Operator <code class="docutils literal notranslate"><span class="pre">:</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="operator_colon.html#allowed-operands">Allowed operands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operator_colon.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="operator_minus.html">Operator <code class="docutils literal notranslate"><span class="pre">-</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="operator_minus.html#allowed-operands">Allowed operands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operator_minus.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="operator_plus.html">Operator <code class="docutils literal notranslate"><span class="pre">+</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="operator_plus.html#allowed-operands">Allowed operands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operator_plus.html#examples">Examples</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="operators">
+<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<p><em>LI-DL</em> has yet only binary operators. They are listed in the table below. Priority 1 is the highest.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="18%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operator</th>
+<th class="head">Arity</th>
+<th class="head">Priority</th>
+<th class="head">Typical meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">:</span></code></td>
+<td>Binary</td>
+<td>1</td>
+<td>Range creation</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">*</span></code></td>
+<td>Binary</td>
+<td>2</td>
+<td>Aplhabet intersection</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">+</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-</span></code></div>
 </div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Binary</div>
+<div class="line">Binary</div>
+</div>
+</td>
+<td>3</td>
+<td><div class="first last line-block">
+<div class="line">String concatenation</div>
+<div class="line">Aplhabet difference</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">=</span></code></td>
+<td>Binary</td>
+<td>4</td>
+<td>Variable assignment</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
@@ -69,15 +95,16 @@
         <div class="sphinxsidebarwrapper"><div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="about.html" title="next chapter">Overview</a></li>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="a_complex_example.html" title="previous chapter">A complex example</a></li>
+      <li>Next: <a href="operator_colon.html" title="next chapter">Operator <code class="docutils literal notranslate"><span class="pre">:</span></code></a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/operators.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -105,7 +132,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/operators.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

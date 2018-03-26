@@ -14,4 +14,8 @@ Welcome to LI-DL's documentation!
    the_background
    basics_of_syntax
    a_complex_example
+   operators
+   operator_colon
+   operator_minus
+   operator_plus
 
