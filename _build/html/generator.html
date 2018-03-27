@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Generator &#8212; LI-DL  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Alphabet" href="alphabet.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generator">
+<h1>Generator<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h1>
+<p>Generators are bread and butter of <em>LI-DL</em>. They are used for generating random strings from given characters of given length. You can think of generators like of regular expressions vice versa: instead of describing a real text with a regular expression, you write the expression and <em>LI-DL</em> generates for you a random string that matches.</p>
+<p>Generators not only serve for generating random string as described above, but also bring some kind of “loops” to <em>LI-DL</em>. A generator can cause another generator to be invoked repeatedly, resulting in generating a bunch of strings matching the same criteria. This might be useful for generating dummy configuration files (like <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> in the quickstart).</p>
+<p>A generator consists of two parts: definition of the count and definition of the source. A count might be an integer or something that yields an integer (a range, a choice) and the source might be anything. Strings, integers and floats will be just concatenated several times, several elemets from an alphabet will be randomly chosen to create a string, and ranges, generators and choices will be asked to produce a value several times and the results will be concatenated together.</p>
+<p>The source part of a generator will be invoked as a whole in each “iteration”. This emulates the concept of local variables (although there is actually nothing like that in <em>LI-DL</em>). For a usage, see the examples below.</p>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<p>A generator is enclosed in square brackets (<code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code>) and its two parts are separated by a comma (<code class="docutils literal notranslate"><span class="pre">,</span></code>). The first part denotes the count, while the other denotes the source.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Hello!&quot;</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span>
+     <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;This sentence will be printed 100 times.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+</span>
+     <span class="s2">&quot;After each 10 sentences, this will appear.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A generator to generate a text of 10 lorem ipsum words (note the trick to get rid of the trailing space at the end of the text):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;lorem &quot;</span><span class="p">,</span> <span class="s2">&quot;ipsum &quot;</span><span class="p">,</span> <span class="s2">&quot;dolor &quot;</span><span class="p">,</span> <span class="s2">&quot;sit &quot;</span><span class="p">,</span> <span class="s2">&quot;amet &quot;</span><span class="p">}]</span> <span class="o">+</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;lorem&quot;</span><span class="p">,</span> <span class="s2">&quot;ipsum&quot;</span><span class="p">,</span> <span class="s2">&quot;dolor&quot;</span><span class="p">,</span> <span class="s2">&quot;sit&quot;</span><span class="p">,</span> <span class="s2">&quot;amet&quot;</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>A generator to generate from 30 to 50 pairs of same integers from 0 to 99, separated by <code class="docutils literal notranslate"><span class="pre">:</span></code>. (note the trick to store the number and reuse it later - the generator source is invoked in each iteration over again):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="n">tmp</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span><span class="mi">99</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">tmp</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generator</a><ul>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="alphabet.html" title="previous chapter">Alphabet</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/generator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Karel Jilek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/generator.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

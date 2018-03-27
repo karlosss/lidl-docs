@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>String &#8212; LI-DL  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Integer" href="integer.html" />
+    <link rel="prev" title="Operator =" href="operator_equal.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="string">
+<h1>String<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h1>
+<p>A string is a bunch of characters. It can be used for file names, file contents, the content of <code class="docutils literal notranslate"><span class="pre">stdin</span></code>, positional parameters and many more. It is pretty much the same as strings in programming languages.</p>
+<p>There is one predefined string - the path of the directory the generated Bash script is run in. It might be useful in some cases. It is accessible through the variable <code class="docutils literal notranslate"><span class="pre">ROOT</span></code>.</p>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;string content&quot;</span>
+<span class="s1">&#39;string content&#39;</span>
+</pre></div>
+</div>
+<p>As you can see, there is no difference between <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">'</span></code>. Just bear in mind that the string must start and end with the same type of quotation. The other type of quotes in a string is considered as a literal.</p>
+<p>Mutli-line string are not supported.</p>
+</div>
+<div class="section" id="escape-sequences">
+<h2>Escape sequences<a class="headerlink" href="#escape-sequences" title="Permalink to this headline">¶</a></h2>
+<p>In <em>LI-DL</em> strings, several escape sequences can be used. They are listed below:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Sequence</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code></td>
+<td>A <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> literal (works only for double-quoted strings)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">\'</span></code></td>
+<td>A <code class="docutils literal notranslate"><span class="pre">'</span></code> literal (works only for single-quoted strings)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">\\</span></code></td>
+<td>A <code class="docutils literal notranslate"><span class="pre">\</span></code> literal</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">\a</span></code></td>
+<td>A bell (ASCII 7)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">\b</span></code></td>
+<td>A backspace (ASCII 8)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">\f</span></code></td>
+<td>A form feed (ASCII 12)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">\n</span></code></td>
+<td>A newline (ASCII 10)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">\r</span></code></td>
+<td>A carriage return (ASCII 13)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">\t</span></code></td>
+<td>A horizontal tab (ASCII 9)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">\xXX</span></code></td>
+<td>A byte of hex value <code class="docutils literal notranslate"><span class="pre">XX</span></code> (example: <code class="docutils literal notranslate"><span class="pre">\x40</span></code> is a <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Assigning string to a variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;some string&quot;</span>
+<span class="n">another_var</span> <span class="o">=</span> <span class="s1">&#39;another string</span><span class="se">\n</span><span class="s1">over two lines&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">String</a><ul>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#escape-sequences">Escape sequences</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="operator_equal.html" title="previous chapter">Operator <code class="docutils literal notranslate"><span class="pre">=</span></code></a></li>
+      <li>Next: <a href="integer.html" title="next chapter">Integer</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/string.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Karel Jilek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/string.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

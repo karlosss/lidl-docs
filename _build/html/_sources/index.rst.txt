@@ -6,17 +6,40 @@
 Welcome to LI-DL's documentation!
 =================================
 
+Quickstart
+----------
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    about
    getting_started
    the_background
    basics_of_syntax
    a_complex_example
+
+Operators
+---------
+
+.. toctree::
+   :maxdepth: 1
+
    operators
    operator_colon
    operator_minus
    operator_plus
    operator_star
    operator_equal
+
+Data Types
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   string
+   integer
+   float
+   alphabet
+   generator
+
