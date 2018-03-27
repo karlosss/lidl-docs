@@ -1,0 +1,125 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Variable &#8212; LI-DL  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Range" href="range.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="variable">
+<h1>Variable<a class="headerlink" href="#variable" title="Permalink to this headline">¶</a></h1>
+<p>As you for sure know, variable itself is not a data type. But there was nowhere else in the documentation to place this.</p>
+<p>A variable is a key in the symbol table during the runtime. Its associated value might be a string, an integer, a float, or an alphabet. The remaining data types and object might not be stored in a variable.</p>
+<p>Variable assignment is done by operator <code class="docutils literal notranslate"><span class="pre">=</span></code>. Variable reading is done by just writing its plain name.</p>
+<p>Although only data types mentioned above might be the values of a variable, actually any data type can be assigned to a variable. In case a range, a generator or a choice is assigned, a value is produced and that value is stored into the variable. It might seem a bit confusing.</p>
+<p>Of course, a value of a variable might be copied to another variable. This is done by putting the source variable on the right side of the operator <code class="docutils literal notranslate"><span class="pre">=</span></code>. All copies made this way are deep. There is no shallow (reference) copying in <em>LI-DL</em>.</p>
+<p>There is just a single scope in <em>LI-DL</em>. A variable might be (re)defined absolutely everywhere and the (re)definition will have global impact.</p>
+<p>Variable assignment returns the assigned value.</p>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<p>A variable is just a plain string without quotes. It might consist of lowercase characters (arbitrarily) and uppercase characters, digits and underscores as long as they are not the first character of the name. ALL CAPS names are reserved for builtin constants and names starting with a capital letter are reserved for objects.</p>
+<p>Operator <code class="docutils literal notranslate"><span class="pre">=</span></code> is used for the actual assignment. The right-hand side might be arbitrarily complicated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Variable <code class="docutils literal notranslate"><span class="pre">tmp</span></code> is defined inside a generator. Variable <code class="docutils literal notranslate"><span class="pre">x</span></code> will have the same value as <code class="docutils literal notranslate"><span class="pre">tmp</span></code> in the last pair of generated integers, as it was the last time the generator source was invoked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="n">tmp</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span><span class="mi">99</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">tmp</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Variable</a><ul>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="range.html" title="previous chapter">Range</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/variable.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Karel Jilek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/variable.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

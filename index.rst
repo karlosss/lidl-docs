@@ -44,4 +44,7 @@ Data Types
    generator
    choice
    range
+   variable
 
+Objects
+-------
