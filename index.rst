@@ -42,4 +42,6 @@ Data Types
    float
    alphabet
    generator
+   choice
+   range
 
