@@ -48,3 +48,13 @@ Data Types
 
 Objects
 -------
+
+.. toctree::
+   :maxdepth: 1
+
+   objects
+   file
+   directory
+   fifo
+   symboliclink
+   
