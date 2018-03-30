@@ -57,4 +57,6 @@ Objects
    directory
    fifo
    symboliclink
+   hardlink
+   student
    
