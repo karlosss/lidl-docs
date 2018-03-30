@@ -45,7 +45,7 @@ Allowed properties
 Allowed objects
 ---------------
 
-``File``, ``Directory``, ``Hardlink``, ``Symlink``, ``Fifo``, ``Student`` and ``Startdir``.
+``File``, ``Directory``, ``Hardlink``, ``Symlink``, ``Fifo``, and ``Student``.
 
 Examples
 --------
