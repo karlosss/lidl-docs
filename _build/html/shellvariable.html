@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Student &#8212; LI-DL  documentation</title>
+    <title>Variable (object) &#8212; LI-DL  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
@@ -17,8 +17,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Argument" href="argument.html" />
-    <link rel="prev" title="Hardlink" href="hardlink.html" />
+    <link rel="prev" title="Stdin" href="stdin.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,11 +32,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="student">
-<h1>Student<a class="headerlink" href="#student" title="Permalink to this headline">¶</a></h1>
-<p>An object that serves for marking the location of the submitted script in the file tree.</p>
-<p>This object must exist precisely once in each <em>LI-DL</em> code.</p>
-<p>There is no need to worry about the permissions - whatever the permissions of the parental directories are, <em>LI-DL</em> changes them so that the script can be reached and executed.</p>
+  <div class="section" id="variable-object">
+<h1>Variable (object)<a class="headerlink" href="#variable-object" title="Permalink to this headline">¶</a></h1>
+<p><strong>This is an object Variable. DO NOT MIX WITH *LI-DL* INTERNAL VARIABLES!</strong></p>
+<p>An object that serves for setting a shell variable for the script.</p>
 <div class="section" id="allowed-properties">
 <h2>Allowed properties<a class="headerlink" href="#allowed-properties" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="colwidths-given docutils">
@@ -60,25 +58,18 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">name</span></code></td>
+<td>String</td>
+<td>Yes</td>
+<td>&#160;</td>
+<td>Must follow rules for naming shell variables.</td>
+<td>The name of the variable.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
 <td>String, Integer, Float</td>
-<td>No</td>
-<td>A string <code class="docutils literal notranslate"><span class="pre">Student</span></code>.</td>
-<td>Must be defined before <code class="docutils literal notranslate"><span class="pre">abspath</span></code>. Must contain only unix-valid filename characters.</td>
-<td>The name of the file.</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">abspath</span></code></td>
-<td>String</td>
-<td>No</td>
-<td>&#160;</td>
-<td>Must be defined after <code class="docutils literal notranslate"><span class="pre">name</span></code>.</td>
-<td>The name of the variable to store the absolute path to the file to. The path is stored as a string and might be used later.</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">related_name</span></code></td>
-<td>String</td>
-<td>No</td>
+<td>Yes</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>Identifies this object with the given name. Useful for links.</td>
+<td>The value the variable shall be initialized with.</td>
 </tr>
 </tbody>
 </table>
@@ -89,18 +80,21 @@
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>This way, the student script will be located in the <code class="docutils literal notranslate"><span class="pre">etc</span></code> directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Directory</span> <span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;etc&quot;</span>
-    <span class="n">Student</span> <span class="p">{}</span>
+<p>This puts an integer into a shell variable and a path to a file to another shell variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;integer&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">100</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-<p>Probably the most common case is to have the student script in the root:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+
+<span class="n">File</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="n">LOWER_ASCII</span><span class="p">]</span>
+    <span class="n">abspath</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
 <span class="p">}</span>
-<span class="n">Student</span> <span class="p">{}</span>
+
+<span class="n">Variable</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;PATH&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">x</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -114,7 +108,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Student</a><ul>
+<li><a class="reference internal" href="#">Variable (object)</a><ul>
 <li><a class="reference internal" href="#allowed-properties">Allowed properties</a></li>
 <li><a class="reference internal" href="#allowed-objects">Allowed objects</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
@@ -125,15 +119,14 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="hardlink.html" title="previous chapter">Hardlink</a></li>
-      <li>Next: <a href="argument.html" title="next chapter">Argument</a></li>
+      <li>Previous: <a href="stdin.html" title="previous chapter">Stdin</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/student.rst.txt"
+      <li><a href="_sources/shellvariable.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -161,7 +154,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/student.rst.txt"
+      <a href="_sources/shellvariable.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,6 +1,6 @@
-########
-Variable
-########
+##################################
+Variable (*LI-DL* auxiliary agent)
+##################################
 
 As you for sure know, variable itself is not a data type. But there was nowhere else in the documentation to place this.
 

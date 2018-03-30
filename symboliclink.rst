@@ -1,5 +1,5 @@
 #############
-Symbolic Link
+Symlink
 #############
 
 An object that serves for creation of symbolic link. A symbolic link is a file containing a path, it might be both valid and invalid. *LI-DL* can do both.

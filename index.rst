@@ -59,4 +59,10 @@ Objects
    symboliclink
    hardlink
    student
+   argument
+   stdin
+   shellvariable
+   before
+   after
+   checkalias
    
